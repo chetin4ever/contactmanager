@@ -1,11 +1,17 @@
 import React from 'react';
 
 import './App.css';
+import Contact from './comopent/Contact';
+import Header from './comopent/Header';
 
 function App() {
   return (
     <div className="App">
-      <h1>hello world</h1>
+      <Header branding="Conatct Manager"/>
+      <Contact name="john D" email="jhonDoe@gmail.com" phone="555-555-5555" />
+      <Contact name="abc" email="abc@gmail.com" phone="555-555-5555"/>
+    
+      
     </div>
   );
 }
