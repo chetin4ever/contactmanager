@@ -9,9 +9,7 @@ function App() {
     <div className="App">
       <Header branding="Conatct Manager"/>
       <Contact name="john D" email="jhonDoe@gmail.com" phone="555-555-5555" />
-      <Contact name="abc" email="abc@gmail.com" phone="555-555-5555"/>
-    
-      
+      <Contact name="abc" email="abc@gmail.com" phone="555-555-5555"/>    
     </div>
   );
 }
