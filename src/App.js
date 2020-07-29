@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Contacts from "./component/Contacts";
-import Header from "./component/Header";
-import { Provider }  from "./context";
+import Contacts from "./component/contacts/Contacts";
+import Header from "./component/layout/Header";
+import AddContact from "./component/contacts/AddContact";
+import { Provider } from "./context";
+
 
 class App extends Component{
   render() {
@@ -13,6 +15,7 @@ class App extends Component{
         <div className="App">
           <Header branding="Conatct Manager" />
           <div className="container">
+            <AddContact/>
             <Contacts />
           </div>
         </div>
