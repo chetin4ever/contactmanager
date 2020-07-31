@@ -6,7 +6,7 @@ import Header from "./component/layout/Header";
 import AddContact from "./component/contacts/AddContact";
 import { Provider } from "./context";
 //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./component/pages/About";
 import NotFound from "./component/pages/NotFound";
 import EditContact from "./component/contacts/EditContact";
@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <Router basename={`${process.env.PUBLIC_URL}/`}>
+        <Router>
           <div className="App">
             <Header branding="Conatct Manager" />
             <div className="container">
