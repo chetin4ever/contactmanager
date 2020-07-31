@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-import { v1 as uuid } from "uuid";
+//import { v1 as uuid } from "uuid";
 import TextInputGroup from "../layout/TextInputGroup";
 import axios from "axios";
 
-class AddContact extends Component {
+class EditContact extends Component {
   state = {
     id: "",
     name: "",
@@ -12,6 +12,18 @@ class AddContact extends Component {
     phone: "",
     errors: "",
   };
+  async componentDidMount() {
+    const { id } = this.props.match.params;
+    const res = await axios.get(
+      `http://jsonplaceholder.typicode.com/users/${id}`
+    );
+    const contact = res.data;
+    this.setState({
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+    });
+  }
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
@@ -30,25 +42,39 @@ class AddContact extends Component {
       this.setState({ errors: { phone: "Phone is required" } });
       return;
     }
-    const newContact = {
-      // id: uuid(),// uncomment if you dont use post request
+    // const updContact = {
+    //   // id: uuid(),// uncomment if you dont use post request
 
-      name,
-      email,
-      phone,
-    };
+    //   name,
+    //   email,
+    //   phone,
+    // };
+    // const { id } = this.props.match.params;
     // adding contact using post request in json placeholder
     // axios
     //   .post("http://jsonplaceholder.typicode.com/users", newContact)
     //   .then((res) => dispatch({ type: "ADD_CONTACT", payload: res.data }));
 
     //using async
-    const res = await axios.post(
-      "http://jsonplaceholder.typicode.com/users",
-      newContact
-    );
+    // const res = await axios.put(
+    //   `http://jsonplaceholder.typicode.com/users/${id}}`,
+    //   updContact
+    // );
+    const updContact = {
+      name,
+      email,
+      phone,
+    };
 
-    dispatch({ type: "ADD_CONTACT", payload: res.data });
+    const { id } = this.props.match.params;
+
+    const res = await axios.put(
+      `https://jsonplaceholder.typicode.com/users/${id}`,
+      updContact
+    );
+    console.log(res);
+
+    dispatch({ type: "UPDATE_CONTACT", payload: res.data });
     //uncomment if not using post request
     //dispatch({ type: "ADD_CONTACT", payload: newContact });
 
@@ -70,7 +96,7 @@ class AddContact extends Component {
           const { dispatch } = value;
           return (
             <div className="card mb-3">
-              <div className="card-header">Add Contact</div>
+              <div className="card-header">Edit Contact</div>
               <div className="card-body">
                 <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <TextInputGroup
@@ -100,7 +126,7 @@ class AddContact extends Component {
                   />
                   <input
                     type="submit"
-                    value="Add Contact"
+                    value="Update Contact"
                     className="btn  btn-light btn-block"
                   />
                 </form>
@@ -112,4 +138,4 @@ class AddContact extends Component {
     );
   }
 }
-export default AddContact;
+export default EditContact;

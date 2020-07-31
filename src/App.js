@@ -5,9 +5,11 @@ import Contacts from "./component/contacts/Contacts";
 import Header from "./component/layout/Header";
 import AddContact from "./component/contacts/AddContact";
 import { Provider } from "./context";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./component/pages/About";
 import NotFound from "./component/pages/NotFound";
+import EditContact from "./component/contacts/EditContact";
 
 class App extends Component {
   render() {
@@ -21,6 +23,7 @@ class App extends Component {
                 <Route exact path="/" component={Contacts} />
                 <Route exact path="/contact/add" component={AddContact} />
                 <Route exact path="/about/:id" component={About} />
+                <Route exact path="/contact/edit/:id" component={EditContact} />
                 <Route component={NotFound} />
               </Switch>
             </div>
