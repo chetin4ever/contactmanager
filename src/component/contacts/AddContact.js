@@ -44,7 +44,7 @@ class AddContact extends Component {
 
     //using async
     const res = await axios.post(
-      "http://jsonplaceholder.typicode.com/users",
+      "https://jsonplaceholder.typicode.com/users",
       newContact
     );
 
